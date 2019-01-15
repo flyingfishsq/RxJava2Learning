@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <Button
+        android:id="@+id/btn_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="map操作符" />
+
+    <Button
+        android:id="@+id/btn_flatmap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="flatmap操作符" />
+
+    <Button
+        android:id="@+id/btn_flatmap_plus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="另一种调用flatmap操作符" />
+
+    <TextView
+        android:id="@+id/tv_base_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HELLO_WORLD!" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="**********新数据**********" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HELLO_WORLD!" />
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <Button
+        android:id="@+id/btn_dosomething"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="普通create" />
+
+    <Button
+        android:id="@+id/btn_createByJust"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="用Just方法create" />
+
+    <Button
+        android:id="@+id/btn_createByFrom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="用From方法create" />
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Hello_World!" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_jump"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="启动转换操作符Activity" />
+
+            <Button
+                android:id="@+id/btn_jump2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="启动do操作符Activity" />
+
+            <Button
+                android:id="@+id/btn_jump3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ColdObservable与HotObservable" />
+
+            <Button
+                android:id="@+id/btn_jump4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="只有onSuccess与onError的Single" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
