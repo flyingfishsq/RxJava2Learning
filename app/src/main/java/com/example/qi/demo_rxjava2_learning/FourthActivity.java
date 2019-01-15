@@ -16,6 +16,9 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Cold Observable
+ */
 public class FourthActivity extends Activity {
 
     private Context mContext;
@@ -35,9 +38,9 @@ public class FourthActivity extends Activity {
 
         myOnClickListener = new MyOnClickListener();
 
-        ll_content = (LinearLayout) findViewById(R.id.ll_content);
+        ll_content = findViewById(R.id.ll_content);
 
-        btn_cold = (Button) findViewById(R.id.btn_cold);
+        btn_cold = findViewById(R.id.btn_cold);
         btn_cold.setOnClickListener(myOnClickListener);
     }
 
