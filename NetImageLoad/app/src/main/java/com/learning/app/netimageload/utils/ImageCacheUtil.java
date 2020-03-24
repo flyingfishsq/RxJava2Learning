@@ -16,14 +16,14 @@ public class ImageCacheUtil {
     public ImageCacheUtil() {
         memoryCacheUtil = new MemoryCacheUtil();
         localCacheUtil = new LocalCacheUtil();
-        netImageUtil = new NetImageUtil();
+        netImageUtil = new NetImageUtil(memoryCacheUtil, localCacheUtil);
     }
 
     //把网络图片显示到view上
     public void loadImage(ImageView imageView, String url) {
         //显示default图片
         imageView.setImageResource(R.mipmap.ic_launcher);
-        Bitmap bitmap = null;
+        Bitmap bitmap;
         //先从内存缓存读取
         bitmap = memoryCacheUtil.getBitmapFromMemory(url);
         if(bitmap != null){

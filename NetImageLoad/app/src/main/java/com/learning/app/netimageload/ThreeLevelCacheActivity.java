@@ -1,8 +1,14 @@
 package com.learning.app.netimageload;
 
+import android.os.Bundle;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.learning.app.netimageload.utils.ImageCacheUtil;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 三级缓存策略
@@ -14,9 +20,20 @@ import android.os.Bundle;
  */
 public class ThreeLevelCacheActivity extends AppCompatActivity {
 
+    @BindView(R.id.iv_pic)
+    ImageView ivPic;
+
+    private final String mUrl = "http://pic1.win4000.com/wallpaper/b/55597435bb036.jpg";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three_level_cache);
+        ButterKnife.bind(this);
+        initView();
+    }
+
+    private void initView() {
+        new ImageCacheUtil().loadImage(ivPic, mUrl);
     }
 }

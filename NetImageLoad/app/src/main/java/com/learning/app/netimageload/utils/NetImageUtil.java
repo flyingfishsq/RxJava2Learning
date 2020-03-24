@@ -3,6 +3,7 @@ package com.learning.app.netimageload.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class NetImageUtil {
     //将下载的图片进行内存缓存和本地缓存
     public void getBitmapFromNet(String url, ImageView imageView) {
         new BitmapTask().execute(imageView, url);
+        Log.e("ImageCacheUtil", "--网络加载--成功");
     }
 
     //网络图片下载线程
@@ -69,7 +71,7 @@ public class NetImageUtil {
                 //压缩为原图的1/2
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inSampleSize = 2;
-                options.inPreferredConfig = Bitmap.Config.ARGB_4444;
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
 
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
                 inputStream.close();
