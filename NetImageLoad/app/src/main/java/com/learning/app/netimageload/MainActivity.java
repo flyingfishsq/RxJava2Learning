@@ -1,14 +1,18 @@
 package com.learning.app.netimageload;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.learning.app.netimageload.utils.ImageCompressUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,6 +23,7 @@ import java.net.URL;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView ivPic;
 
     private final String mUrl = "http://pic1.win4000.com/wallpaper/7/4fceadcc9e1fb.jpg";
+    @BindView(R.id.button1)
+    Button button1;
     private byte[] pic;
 
     @Override
@@ -69,18 +76,23 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
-    Handler handler = new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 0:
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(pic,0,pic.length);
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(pic, 0, pic.length);
 //                    ivPic.setImageBitmap(bitmap);
-                    Bitmap bitmap1 = ImageUtil.compressBitmapBySampling(bitmap, 2);
+                    Bitmap bitmap1 = ImageCompressUtil.compressBitmapBySampling(bitmap, 2);
                     ivPic.setImageBitmap(bitmap1);
                     break;
             }
         }
     };
+
+    @OnClick(R.id.button1)
+    public void onViewClicked() {
+        startActivity(new Intent(MainActivity.this, ThreeLevelCacheActivity.class));
+    }
 }

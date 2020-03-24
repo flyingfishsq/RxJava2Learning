@@ -1,4 +1,4 @@
-package com.learning.app.netimageload;
+package com.learning.app.netimageload.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,9 +17,9 @@ import java.io.ByteArrayOutputStream;
  * <p>
  * Bitmap所占用的内存=图片的长度*图片的宽度*一个像素点占用的字节数（3个参数决定的，任意减少一个的信息，就达到了压缩的效果）
  */
-public class ImageUtil {
+public class ImageCompressUtil {
 
-    public static final String TAG = "图片压缩";
+    public static final String TAG = ImageCompressUtil.class.getSimpleName();
 
     /**
      * 对图片进行基于采样率的压缩
@@ -29,6 +29,7 @@ public class ImageUtil {
      * @return
      */
     public static Bitmap compressBitmapBySampling(Bitmap bitmap, int samplingRate) {
+        Log.e(TAG, "原图片大小：" + bitmap.getByteCount());
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = samplingRate;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
