@@ -76,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
             switch (msg.what){
                 case 0:
                     Bitmap bitmap = BitmapFactory.decodeByteArray(pic,0,pic.length);
-                    ivPic.setImageBitmap(bitmap);
+//                    ivPic.setImageBitmap(bitmap);
+                    Bitmap bitmap1 = ImageUtil.compressBitmapBySampling(bitmap, 2);
+                    ivPic.setImageBitmap(bitmap1);
                     break;
             }
         }
