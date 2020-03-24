@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 
-import androidx.core.os.EnvironmentCompat;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * 本地缓存机制
+ * 这里有bug，Environment.getExternalStorageDirectory()在华为设备上访问不了路径，不清楚这是不是高版本os的限制访问路径
  */
 public class LocalCacheUtil {
     private static final String PATH = Environment.getExternalStorageDirectory() + "/imageZip/";
