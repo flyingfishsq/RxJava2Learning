@@ -1,4 +1,4 @@
-package com.learning.app.treadpoolloadimage;
+package com.learning.app.threadpoolloadimage;
 
 import android.os.Bundle;
 import android.widget.ImageView;

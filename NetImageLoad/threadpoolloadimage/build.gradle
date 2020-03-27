@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.learning.app.treadpoolloadimage"
+        applicationId "com.learning.app.threadpoolloadimage"
         minSdkVersion 14
         targetSdkVersion 29
         versionCode 1

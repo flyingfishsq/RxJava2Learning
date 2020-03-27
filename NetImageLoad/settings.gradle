@@ -1,2 +1,2 @@
-include ':app', ':localimageload', ':treadpoolloadimage'
+include ':app', ':localimageload', ':threadpoolloadimage'
 rootProject.name='NetImageLoad'
