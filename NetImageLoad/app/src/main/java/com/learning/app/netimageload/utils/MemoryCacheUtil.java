@@ -3,9 +3,6 @@ package com.learning.app.netimageload.utils;
 import android.graphics.Bitmap;
 import android.util.LruCache;
 
-import java.lang.ref.SoftReference;
-import java.util.HashMap;
-
 /**
  * 内存缓存机制，三级缓存中最重要的
  */

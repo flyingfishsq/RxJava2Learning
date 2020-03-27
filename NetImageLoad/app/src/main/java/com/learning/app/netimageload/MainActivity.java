@@ -25,6 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+//网络图片加载框架
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.iv_pic)

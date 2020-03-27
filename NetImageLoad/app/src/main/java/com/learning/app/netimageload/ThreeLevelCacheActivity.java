@@ -20,20 +20,26 @@ import butterknife.ButterKnife;
  */
 public class ThreeLevelCacheActivity extends AppCompatActivity {
 
+    private ImageCacheUtil imageCacheUtil;
+
     @BindView(R.id.iv_pic)
     ImageView ivPic;
 
     private final String mUrl = "http://pic1.win4000.com/wallpaper/b/55597435bb036.jpg";
+    @BindView(R.id.iv_pic_2)
+    ImageView ivPic2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three_level_cache);
         ButterKnife.bind(this);
+        imageCacheUtil = new ImageCacheUtil();
         initView();
     }
 
     private void initView() {
-        new ImageCacheUtil().loadImage(ivPic, mUrl);
+        imageCacheUtil.loadImage(ivPic, mUrl);
+        imageCacheUtil.loadImage(ivPic2,mUrl);
     }
 }
