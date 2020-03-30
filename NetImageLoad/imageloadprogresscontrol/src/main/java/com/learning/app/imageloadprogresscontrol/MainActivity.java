@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static final String IMAGE_URL = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585559496852&di=aba254fab1f896431827fa3ce0d2114d&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1207%2F18%2Fc1%2F12378628_1342603613476.jpg";
+    private static final String IMAGE_URL = "http://wallcoo.com/nature/Amazing_Color_Landscape_2560x1600/wallpapers/2560x1600/Amazing_Landscape_101.jpg";
     @BindView(R.id.iv_pic)
     ImageView ivPic;
     @BindView(R.id.pb)
