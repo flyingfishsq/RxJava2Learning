@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static final String IMAGE_URL = "https://cn.bing.com/th?id=OIP.WkxKG8dx7x4OJiNH2xXvxwHaEo&pid=Api&rs=1";
+    private static final String IMAGE_URL = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585559496852&di=aba254fab1f896431827fa3ce0d2114d&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1207%2F18%2Fc1%2F12378628_1342603613476.jpg";
     @BindView(R.id.iv_pic)
     ImageView ivPic;
     @BindView(R.id.pb)
@@ -72,10 +72,16 @@ public class MainActivity extends AppCompatActivity {
                             message.obj = percent + "%";
                             handler.sendMessage(message);
                         }
+                        int size = byteArrayOutputStream.size();
+                        double percent = ((double)size / (double) contentLength)*100;
                         imgBytes = byteArrayOutputStream.toByteArray();
                         byteArrayOutputStream.close();
                         inputStream.close();
-                        handler.sendEmptyMessage(1);
+
+                        Message message = Message.obtain();
+                        message.what = 1;
+                        message.obj = percent + "%";
+                        handler.sendMessage(message);
                     }else{
                         handler.sendEmptyMessage(-1);
                     }
@@ -109,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
                     tv.setText(result);
                     break;
                 case STATUS_COMPLETE_DOWNLOAD:
+                    String result2 = (String) (msg.obj);
+                    tv.setText(result2);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(imgBytes, 0, imgBytes.length);
                     ivPic.setImageBitmap(bitmap);
                     pb.setVisibility(View.INVISIBLE);
