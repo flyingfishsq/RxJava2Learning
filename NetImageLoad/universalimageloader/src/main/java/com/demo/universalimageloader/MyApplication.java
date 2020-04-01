@@ -36,7 +36,7 @@ public class MyApplication extends Application {
                 //磁盘缓存
                 .diskCache(new UnlimitedDiskCache(new File(getExternalCacheDir() + "/universalimageloader")))
                 //磁盘缓存图片尺寸
-                .diskCacheExtraOptions(400, 400, null)
+//                .diskCacheExtraOptions(400, 400, null)
                 .diskCacheFileCount(100)
                 //磁盘缓存命名方式，默认是MD5
                 .diskCacheFileNameGenerator(new HashCodeFileNameGenerator())
@@ -48,7 +48,7 @@ public class MyApplication extends Application {
                 //设置内存缓存的大小，设置最大10M
                 .memoryCache(new LruMemoryCache(10 * 1024 * 1024))
                 //内存缓存图片尺寸
-                .memoryCacheExtraOptions(400, 400)
+//                .memoryCacheExtraOptions(400, 400)
                 .memoryCacheSize(10 * 1024 * 1024)
                 //设置内存缓冲的最大占总内存的比例，设置成13%以下
                 .memoryCacheSizePercentage(12)
