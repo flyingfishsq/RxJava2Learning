@@ -2,9 +2,9 @@ package com.demo.universalimageloader;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,12 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.download.ImageDownloader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "UniversalImageLoader";
@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView ivPic;
     @BindView(R.id.tv)
     TextView tv;
+    @BindView(R.id.btn_clear)
+    Button btnClear;
 
     private ImageLoader imageLoader;
 
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onLoadingCancelled(String imageUri, View view) {
-                Log.e(TAG,"onLoadingCancelled");
+                Log.e(TAG, "onLoadingCancelled");
             }
         }, new ImageLoadingProgressListener() {
             @Override
@@ -108,5 +110,11 @@ public class MainActivity extends AppCompatActivity {
 //        String assets = ImageDownloader.Scheme.ASSETS.wrap("img.png");
 //        //drawable
 //        String drawable = ImageDownloader.Scheme.DRAWABLE.wrap("R.drawable.image");
+    }
+
+    @OnClick(R.id.btn_clear)
+    public void onViewClicked() {
+        imageLoader.clearDiskCache();
+        imageLoader.clearMemoryCache();
     }
 }
