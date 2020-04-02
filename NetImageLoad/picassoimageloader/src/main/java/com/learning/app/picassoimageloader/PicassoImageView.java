@@ -1,13 +1,11 @@
 package com.learning.app.picassoimageloader;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import androidx.annotation.IntRange;
 import androidx.appcompat.widget.AppCompatImageView;
