@@ -23,7 +23,7 @@
         android:layout_margin="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv"/>
+        app:layout_constraintTop_toBottomOf="@id/tv" />
 
     <Button
         android:id="@+id/btn_advance"

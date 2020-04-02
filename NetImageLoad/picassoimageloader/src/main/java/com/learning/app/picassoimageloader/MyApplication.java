@@ -1,9 +1,7 @@
 package com.learning.app.picassoimageloader;
 
 import android.app.Application;
-import android.net.Uri;
 
-import com.squareup.picasso.Downloader;
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 
@@ -15,6 +13,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
@@ -32,6 +31,7 @@ public class MyApplication extends Application {
     //picasso默认并发线程是3个
     private Picasso picasso;
     private OkHttpClient okHttpClient;
+    private static ProgressListener mProgressListener;
 
     @Override
     public void onCreate() {
@@ -40,14 +40,15 @@ public class MyApplication extends Application {
     }
 
     private void initPicasso() {
+        //在OkHttpClient中设置图片的缓存路径和缓存文件夹的最大容量10M
         okHttpClient = new OkHttpClient.Builder().addNetworkInterceptor(new Interceptor() {
             @NotNull
             @Override
             public Response intercept(@NotNull Chain chain) throws IOException {
                 Response response = chain.proceed(chain.request());
-                return response.newBuilder().body().build();
+                return response.newBuilder().body(new ProgressResponseBody(response.body(), mProgressListener)).build();
             }
-        }).build();
+        }).cache(new Cache(new File(getExternalCacheDir() + "myPicasso"), 10 * 1024 * 1024)).build();
         cpuCount = Runtime.getRuntime().availableProcessors();
         //设置线程最小数量（比cpu数量多一个），最大数量
         threadPoolExecutor = new ThreadPoolExecutor(cpuCount + 1, cpuCount * 2 + 1,
@@ -67,7 +68,12 @@ public class MyApplication extends Application {
 //                    }
 //                })
                 //设置缓存路径
-                .downloader(new OkHttpDownloader(new File(getExternalCacheDir()+"myPicasso")))
+                .downloader(new OkHttp3Downloader(okHttpClient))
                 .build();
+        Picasso.setSingletonInstance(picasso);
+    }
+
+    public static void setProgressListener(ProgressListener listener) {
+        mProgressListener = listener;
     }
 }
