@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         progressListener = new ProgressListener() {
             @Override
             public void update(int progress) {
-                runOnUiThread(()->{
-                    tv.setText("你好啊，已经下载了"+progress+"%");
+                runOnUiThread(() -> {
+                    tv.setText("你好啊，已经下载了" + progress + "%");
                 });
             }
         };

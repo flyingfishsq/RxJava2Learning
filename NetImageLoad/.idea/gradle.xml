@@ -11,6 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/frescoimageloader" />
             <option value="$PROJECT_DIR$/imageloadprogresscontrol" />
             <option value="$PROJECT_DIR$/localimageload" />
             <option value="$PROJECT_DIR$/picassoimageloader" />

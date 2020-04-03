@@ -31,7 +31,7 @@ public class SecondActivity extends AppCompatActivity {
         progressListener = new ProgressListener() {
             @Override
             public void update(int progress) {
-                runOnUiThread(()->{
+                runOnUiThread(() -> {
                     tv.setText(progress + "%");
                     ivPic.setProgress(progress);
                 });
