@@ -23,6 +23,8 @@ import okhttp3.Response;
  * 自定义Picasso的全局线程池
  * 自定义Picasso默认缓存路径
  * 自定义Picasso加载图片进度的监听
+ *
+ * Picasso实例的两种创建方式，一种是with方法(本质上也是调用build方法)，一种是build方法
  */
 public class MyApplication extends Application {
     private ThreadPoolExecutor threadPoolExecutor;

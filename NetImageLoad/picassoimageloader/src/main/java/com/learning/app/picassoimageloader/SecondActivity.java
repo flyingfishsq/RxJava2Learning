@@ -49,7 +49,7 @@ public class SecondActivity extends AppCompatActivity {
         picasso.setLoggingEnabled(true);
         //MemoryPolicy.NO_CACHE表示不从内存缓存读取
         //MemoryPolicy.NO_STORE表示不做内存缓存存储
-        picasso.load(URL).config(Bitmap.Config.ALPHA_8)
+        picasso.load(URL).config(Bitmap.Config.ARGB_8888)
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                 //NetworkPolicy.NO_CACHE,NetworkPolicy.NO_STORE不从本地缓存文件读取，也不做本地缓存文件存储
                 .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
