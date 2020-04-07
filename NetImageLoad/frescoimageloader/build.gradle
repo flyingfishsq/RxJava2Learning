@@ -29,7 +29,7 @@ android {
         abi{
             enable true
             reset()
-            include 'armeabi','x86'
+            include 'armeabi','armeabi-v7a','x86'
             universalApk false
         }
     }
