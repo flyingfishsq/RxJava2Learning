@@ -1,0 +1,4 @@
+include ':app', ':localimageload', ':threadpoolloadimage', ':imageloadprogresscontrol', ':universalimageloader'
+rootProject.name='NetImageLoad'
+include ':picassoimageloader'
+include ':frescoimageloader'
