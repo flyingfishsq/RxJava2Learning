@@ -28,7 +28,7 @@ android {
     splits{
         abi{
             enable true
-            reset();
+            reset()
             include 'armeabi','x86'
             universalApk false
         }
@@ -56,4 +56,5 @@ dependencies {
 
     // 默认使用HttpURLConnection，这样可以使用OkHttp替换掉Android默认的网络请求
     implementation "com.facebook.fresco:imagepipeline-okhttp3:0.12.0+"
+    implementation 'org.jetbrains:annotations:15.0'
 }
