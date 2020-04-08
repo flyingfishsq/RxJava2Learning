@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
             public void call(Subscribe<? super String> subscribe) {
                 //onNext实际调用的地方
                 subscribe.onNext("走，去看电影");
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Toast.makeText(MainActivity.this,"走，去看电影",Toast.LENGTH_SHORT).show();
+//                    }
+//                });
             }
         }).subscribe(new Subscribe<String>() {
             //onNext在实例化接口的对象中的执行逻辑
