@@ -2,3 +2,4 @@ include ':app', ':localimageload', ':threadpoolloadimage', ':imageloadprogressco
 rootProject.name='NetImageLoad'
 include ':picassoimageloader'
 include ':frescoimageloader'
+include ':glideimageloader'
