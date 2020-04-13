@@ -8,11 +8,11 @@ package com.learning.app.writerxjava.rxjava;
  */
 public class OnSubscribeLift<T, R> implements OnSubscribe<R> {
     //男生
-    Observable<T> boy;
+    OnSubscribe<T> boy;
 
     private Func1<? super T, ? extends R> transform;
 
-    public OnSubscribeLift(Observable<T> boy, Func1<? super T, ? extends R> transform) {
+    public OnSubscribeLift(OnSubscribe<T> boy, Func1<? super T, ? extends R> transform) {
         this.boy = boy;
         this.transform = transform;
     }
@@ -21,7 +21,8 @@ public class OnSubscribeLift<T, R> implements OnSubscribe<R> {
     //这里到底应该用T还是R？
     @Override
     public void call(Subscribe<? super R> subscribe) {
-        Subscribe<? super T> wife = new OperateChange<>(subscribe,transform);
+        Subscribe<? super T> wife = new OperateChange<>(subscribe, transform);
+        boy.call(wife);
     }
 
     //好兄弟的老婆(T只想看电影的女生，R会做饭的女生)

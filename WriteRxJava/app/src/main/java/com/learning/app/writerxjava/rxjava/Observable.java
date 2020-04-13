@@ -20,4 +20,9 @@ public class Observable<T> {
     public void subscribe(Subscribe<? super T> subscribe){
         onSubscribe.call(subscribe);
     }
+
+    //找兄弟借老婆
+    public <R> Observable<R> map(Func1<? super T, ? extends R> func1){
+        return new Observable<R>(new OnSubscribeLift<T,R>(onSubscribe, func1));
+    }
 }
