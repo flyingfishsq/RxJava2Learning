@@ -53,7 +53,7 @@ public class ProgressResponseBody extends ResponseBody {
             public long read(@NotNull Buffer sink, long byteCount) throws IOException {
                 long bytesRead = super.read(sink, byteCount);
                 totalBytesRead += bytesRead != -1 ? bytesRead : 0;
-                Log.e("读取的数据", "进度" + (((float)totalBytesRead/(float)responseBody.contentLength())*100)+"%");
+                Log.e("读取的数据", "进度" + (((float) totalBytesRead / (float) responseBody.contentLength()) * 100) + "%");
                 return bytesRead;
             }
 

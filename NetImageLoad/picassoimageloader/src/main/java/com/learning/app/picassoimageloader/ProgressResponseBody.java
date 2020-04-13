@@ -63,9 +63,9 @@ public class ProgressResponseBody extends ResponseBody {
                 //每次读到的大小
                 long bytesRead = super.read(sink, byteCount);
                 totalBytesRead += bytesRead != -1 ? bytesRead : 0;
-                int progress = (int)((100*totalBytesRead)/responseBody.contentLength());
-                Log.e("下载的进度",""+progress);
-                if(progressListener!=null){
+                int progress = (int) ((100 * totalBytesRead) / responseBody.contentLength());
+                Log.e("下载的进度", "" + progress);
+                if (progressListener != null) {
                     progressListener.update(progress);
                 }
                 return bytesRead;
