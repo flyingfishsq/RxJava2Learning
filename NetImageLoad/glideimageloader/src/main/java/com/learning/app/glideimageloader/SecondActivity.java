@@ -28,6 +28,6 @@ public class SecondActivity extends AppCompatActivity {
 
     //Demo里的这个方法已被删除
     private void initView(){
-//        Glide.with(this).using(...).load(URL).into(ivPic);
+//        Glide.with(this).using(new ProgressModelLoader()).load(URL).into(ivPic);
     }
 }
