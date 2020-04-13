@@ -68,6 +68,6 @@ public class ProgressResponseBody extends ResponseBody {
                 super.close();
             }
         };
-        return source;
+        return forwardingSource;
     }
 }
