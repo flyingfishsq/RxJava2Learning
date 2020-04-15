@@ -24,6 +24,6 @@
         android:src="@mipmap/ic_launcher"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
-        app:layout_behavior=".behavior.MyFloatingButtonBehavior"/>
+        app:layout_behavior=".behavior.ScrollAwareFABBehavior"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

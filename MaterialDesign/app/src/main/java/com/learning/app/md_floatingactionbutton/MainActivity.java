@@ -2,6 +2,7 @@ package com.learning.app.md_floatingactionbutton;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,5 +53,10 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MyAdapter(mData));
+    }
+
+    @OnClick(R.id.floatingActionButton)
+    public void onViewClicked() {
+        Toast.makeText(MainActivity.this, "点击了浮动按钮", Toast.LENGTH_SHORT).show();
     }
 }
