@@ -1,43 +1,57 @@
 package com.learning.app.md_instagram;
 
-import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-import androidx.core.widget.ImageViewCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.learning.app.md_instagram.adapter.MyAdapter;
+import com.learning.app.md_instagram.util.CircleTransformation;
 import com.learning.app.md_instagram.view.RevealBackgroundView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class UserProfileActivity extends BaseDrawerActivity {
 
     private static final int USER_OPTIONS_ANIMATION_DELAY = 300;
     private static final Interpolator INTERPOLATOR = new DecelerateInterpolator();
 
+    @BindView(R.id.revealBackgroundView)
     RevealBackgroundView revealBackgroundView;
+    @BindView(R.id.rvUserProfile)
     RecyclerView rvUserProfile;
+    @BindView(R.id.vUserDetails)
+    LinearLayout vUserDetails;
+    @BindView(R.id.vUserStatus)
+    LinearLayout vUserStatus;
+    @BindView(R.id.vUserProfileRoot)
+    LinearLayout vUserProfileRoot;
+    @BindView(R.id.btnCreate)
+    FloatingActionButton btnCreate;
 
+    @BindView(R.id.ivUserProfile)
+    ImageView ivUserProfile;
+    @BindView(R.id.tlUserProfile)
     TabLayout tlUserProfile;
-
-    ImageViewCompat ivUserProfile;
-
-    View vUserDetails;
-    View vUserStatus;
-    View vUserProfileRoot;
 
     private int avatarSize;
     private String profilePhoto;
-    private MyAdapter userProfileAdapter;
-//    private UserProfileAdapter userProfileAdapter;
 
+//    private UserProfileAdapter userProfileAdapter;
 
     private List<String> mData = new ArrayList<>();
 
@@ -46,19 +60,61 @@ public class UserProfileActivity extends BaseDrawerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        ButterKnife.bind(this);
 
-        initData();
+        initData(savedInstanceState);
         initView();
     }
 
-    private void initData() {
+    private void initData(Bundle savedInstanceState) {
         for (int i = 0; i < 30; i++) {
             mData.add("这是第" + (i + 1) + "个条目");
         }
+        avatarSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
+        profilePhoto = "http://wallcoo.com/flower/Romantic_Events_flowers_1920x1200/wallpapers/1920x1200/Romantic_Events_Flowers_photo_012.jpg";
+        Picasso.with(this)
+                .load(profilePhoto)
+                .placeholder(R.mipmap.ic_launcher_round)
+                .resize(avatarSize, avatarSize)
+                .centerCrop()
+                .transform(new CircleTransformation())
+                .into(ivUserProfile);
+
+        setupTabs();
+        steupUserProfileGrid();
+//        setupRevealBackGround(savedInstanceState);
     }
+
     protected void initView() {
-        rvUserProfile = findViewById(R.id.rvUserProfile);
-        rvUserProfile.setLayoutManager(new LinearLayoutManager(this));
+//        rvUserProfile.setLayoutManager(new LinearLayoutManager(this));
+//        rvUserProfile.setAdapter(new MyAdapter(mData));
+    }
+
+    private void setupTabs() {
+        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.mipmap.ic_launcher));
+        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.mipmap.ic_launcher));
+        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.mipmap.ic_launcher));
+        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.mipmap.ic_launcher));
+    }
+
+    private void steupUserProfileGrid() {
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        rvUserProfile.setLayoutManager(staggeredGridLayoutManager);
         rvUserProfile.setAdapter(new MyAdapter(mData));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            rvUserProfile.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                    userProfileAdapter
+                }
+            });
+        }
+    }
+
+    private void setupRevealBackGround(Bundle savedInstanceState) {
+    }
+
+    @OnClick(R.id.btnCreate)
+    public void onViewClicked() {
     }
 }
