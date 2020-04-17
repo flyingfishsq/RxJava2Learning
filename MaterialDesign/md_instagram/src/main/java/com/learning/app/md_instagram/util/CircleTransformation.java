@@ -11,7 +11,7 @@ import com.squareup.picasso.Transformation;
 
 //https://blog.csdn.net/t1623183652/article/details/53008673绘制圆形头像的文章
 public class CircleTransformation implements Transformation {
-    private static final int STROKE_WIDTH = 6;
+    private static final int STROKE_WIDTH = 2;
 
     @Override
     public Bitmap transform(Bitmap source) {
@@ -27,8 +27,9 @@ public class CircleTransformation implements Transformation {
         Bitmap bitmap = Bitmap.createBitmap(size,size,source.getConfig());
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint();
-        BitmapShader shader = new BitmapShader(bitmap,Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-        paint.setShader(shader);
+        BitmapShader shader = new BitmapShader(squaredBitmap,Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        paint.setShader(shader);//设置渲染器
+        paint.setAntiAlias(true);//设置抗拒齿，图片边缘相对清楚
 
         Paint paint1 = new Paint();
         paint1.setColor(Color.WHITE);

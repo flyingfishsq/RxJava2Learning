@@ -71,7 +71,7 @@ public class UserProfileActivity extends BaseDrawerActivity {
             mData.add("这是第" + (i + 1) + "个条目");
         }
         avatarSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
-        profilePhoto = "http://wallcoo.com/flower/Romantic_Events_flowers_1920x1200/wallpapers/1920x1200/Romantic_Events_Flowers_photo_012.jpg";
+        profilePhoto = "http://b-ssl.duitang.com/uploads/item/201704/10/20170410095843_SEvMy.thumb.700_0.jpeg";
         Picasso.with(this)
                 .load(profilePhoto)
                 .placeholder(R.mipmap.ic_launcher_round)
@@ -81,7 +81,7 @@ public class UserProfileActivity extends BaseDrawerActivity {
                 .into(ivUserProfile);
 
         setupTabs();
-        steupUserProfileGrid();
+        setupUserProfileGrid();
 //        setupRevealBackGround(savedInstanceState);
     }
 
@@ -91,13 +91,13 @@ public class UserProfileActivity extends BaseDrawerActivity {
     }
 
     private void setupTabs() {
-        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.mipmap.ic_launcher));
-        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.mipmap.ic_launcher));
-        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.mipmap.ic_launcher));
-        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.mipmap.ic_launcher));
+        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.drawable.ic_menu_camera));
+        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.drawable.ic_menu_cc_am));
+        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.drawable.ic_menu_edit));
+        tlUserProfile.addTab(tlUserProfile.newTab().setIcon(R.drawable.ic_menu_emoticons));
     }
 
-    private void steupUserProfileGrid() {
+    private void setupUserProfileGrid() {
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         rvUserProfile.setLayoutManager(staggeredGridLayoutManager);
         rvUserProfile.setAdapter(new MyAdapter(mData));
