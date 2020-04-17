@@ -8,70 +8,122 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.learning.app.md_instagram.R;
+import com.learning.app.md_instagram.util.ScreenUtil;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class UserProfileAdapter extends RecyclerView.Adapter<UserProfileAdapter.ViewHolder> {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.internal.Utils;
+
+public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int PHOTO_ANIMATION_DELAY = 600;
     private static final Interpolator INTERPOLATOR = new DecelerateInterpolator();
 
-    private List<String> mList;
-    private Context mContext;
 
+    private final Context context;
     private final int cellSize;
+
+    private final List<String> photos;
 
     private boolean lockedAnimations = false;
     private int lastAnimatedItem = -1;
 
-    public UserProfileAdapter(Context context, List<String> list) {
-        mContext = context;
-        mList = list;
-        DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
-        cellSize = dm.widthPixels;
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item, parent, false);
-        return new ViewHolder(view);
+    public UserProfileAdapter(Context context) {
+        this.context = context;
+        this.cellSize = ScreenUtil.getScreenWidth(context) / 3;
+        this.photos = Arrays.asList(context.getResources().getStringArray(R.array.user_photos));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String text = mList.get(position);
-        holder.textView.setText(text);
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, text, Toast.LENGTH_SHORT).show();
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        final View view = LayoutInflater.from(context).inflate(R.layout.item_photo, parent, false);
+        StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) view.getLayoutParams();
+        layoutParams.height = cellSize;
+        layoutParams.width = cellSize;
+        layoutParams.setFullSpan(false);
+        view.setLayoutParams(layoutParams);
+        return new PhotoViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        bindPhoto((PhotoViewHolder) holder, position);
+    }
+
+    private void bindPhoto(final PhotoViewHolder holder, int position) {
+        Picasso.with(context)
+                .load(photos.get(position))
+                .resize(cellSize, cellSize)
+                .centerCrop()
+                .into(holder.ivPhoto, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        animatePhoto(holder);
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
+        if (lastAnimatedItem < position) lastAnimatedItem = position;
+    }
+
+    private void animatePhoto(PhotoViewHolder viewHolder) {
+        if (!lockedAnimations) {
+            if (lastAnimatedItem == viewHolder.getPosition()) {
+                setLockedAnimations(true);
             }
-        });
+
+            long animationDelay = PHOTO_ANIMATION_DELAY + viewHolder.getPosition() * 30;
+
+            viewHolder.flRoot.setScaleY(0);
+            viewHolder.flRoot.setScaleX(0);
+
+            viewHolder.flRoot.animate()
+                    .scaleY(1)
+                    .scaleX(1)
+                    .setDuration(200)
+                    .setInterpolator(INTERPOLATOR)
+                    .setStartDelay(animationDelay)
+                    .start();
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return photos.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class PhotoViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.flRoot)
+        FrameLayout flRoot;
+        @BindView(R.id.ivPhoto)
+        ImageView ivPhoto;
 
-        private CardView cardView;
-        private TextView textView;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            cardView = itemView.findViewById(R.id.cardView);
-            textView = itemView.findViewById(R.id.textView);
+        public PhotoViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
         }
+    }
+
+    public void setLockedAnimations(boolean lockedAnimations) {
+        this.lockedAnimations = lockedAnimations;
     }
 }
