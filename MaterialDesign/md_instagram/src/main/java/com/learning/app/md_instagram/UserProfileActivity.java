@@ -3,6 +3,7 @@ package com.learning.app.md_instagram;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.ImageView;
@@ -53,23 +54,17 @@ public class UserProfileActivity extends BaseDrawerActivity {
 
 //    private UserProfileAdapter userProfileAdapter;
 
-    private List<String> mData = new ArrayList<>();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         ButterKnife.bind(this);
 
-        initData(savedInstanceState);
-        initView();
+        initData();
+        initView(savedInstanceState);
     }
 
-    private void initData(Bundle savedInstanceState) {
-        for (int i = 0; i < 30; i++) {
-            mData.add("这是第" + (i + 1) + "个条目");
-        }
+    private void initData() {
         avatarSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
         profilePhoto = "http://b-ssl.duitang.com/uploads/item/201704/10/20170410095843_SEvMy.thumb.700_0.jpeg";
         Picasso.with(this)
@@ -79,15 +74,12 @@ public class UserProfileActivity extends BaseDrawerActivity {
                 .centerCrop()
                 .transform(new CircleTransformation())
                 .into(ivUserProfile);
-
-        setupTabs();
-        setupUserProfileGrid();
-//        setupRevealBackGround(savedInstanceState);
     }
 
-    protected void initView() {
-//        rvUserProfile.setLayoutManager(new LinearLayoutManager(this));
-//        rvUserProfile.setAdapter(new MyAdapter(mData));
+    protected void initView(Bundle savedInstanceState) {
+        setupTabs();
+        setupUserProfileGrid();
+        setupRevealBackGround(savedInstanceState);
     }
 
     private void setupTabs() {
@@ -100,18 +92,27 @@ public class UserProfileActivity extends BaseDrawerActivity {
     private void setupUserProfileGrid() {
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         rvUserProfile.setLayoutManager(staggeredGridLayoutManager);
-        rvUserProfile.setAdapter(new MyAdapter(mData));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             rvUserProfile.setOnScrollChangeListener(new View.OnScrollChangeListener() {
                 @Override
                 public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//                    userProfileAdapter
+//                    userProfileAdapter.setLockedAnimations(true);//锁定动画
                 }
             });
         }
     }
 
     private void setupRevealBackGround(Bundle savedInstanceState) {
+        //注意动画的启动时间
+        revealBackgroundView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                //不删除就会一直监听
+                revealBackgroundView.getViewTreeObserver().removeOnPreDrawListener(this);
+                revealBackgroundView.startRevealAnimation();
+                return true;
+            }
+        });
     }
 
     @OnClick(R.id.btnCreate)
