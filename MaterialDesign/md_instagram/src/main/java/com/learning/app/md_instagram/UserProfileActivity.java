@@ -14,13 +14,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.learning.app.md_instagram.adapter.MyAdapter;
 import com.learning.app.md_instagram.util.CircleTransformation;
 import com.learning.app.md_instagram.view.RevealBackgroundView;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -111,6 +107,23 @@ public class UserProfileActivity extends BaseDrawerActivity {
                 revealBackgroundView.getViewTreeObserver().removeOnPreDrawListener(this);
                 revealBackgroundView.startRevealAnimation();
                 return true;
+            }
+        });
+        revealBackgroundView.setOnStateChangeListener(new RevealBackgroundView.OnStateChangeListener() {
+            @Override
+            public void onStateChange(int state) {
+                if (state == RevealBackgroundView.STATE_FINISHED) {
+                    tlUserProfile.setVisibility(View.VISIBLE);
+                    rvUserProfile.setVisibility(View.VISIBLE);
+                    vUserProfileRoot.setVisibility(View.VISIBLE);
+                    //显示数据
+                    rvUserProfile.setAdapter();
+                    //开启其它view的动画
+                } else {
+                    tlUserProfile.setVisibility(View.INVISIBLE);
+                    rvUserProfile.setVisibility(View.INVISIBLE);
+                    vUserProfileRoot.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }
