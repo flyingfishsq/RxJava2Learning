@@ -1,5 +1,6 @@
 package com.learning.app.md_instagram;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.learning.app.md_instagram.adapter.UserProfileAdapter;
 import com.learning.app.md_instagram.util.CircleTransformation;
 import com.learning.app.md_instagram.view.RevealBackgroundView;
 import com.squareup.picasso.Picasso;
@@ -48,7 +50,7 @@ public class UserProfileActivity extends BaseDrawerActivity {
     private int avatarSize;
     private String profilePhoto;
 
-//    private UserProfileAdapter userProfileAdapter;
+    private UserProfileAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +107,11 @@ public class UserProfileActivity extends BaseDrawerActivity {
             public boolean onPreDraw() {
                 //不删除就会一直监听
                 revealBackgroundView.getViewTreeObserver().removeOnPreDrawListener(this);
-                revealBackgroundView.startRevealAnimation();
+                Intent intent = getIntent();
+                if(intent.hasExtra(MainActivity.REVEAL_START_LOCATION)){
+                    int[] location = getIntent().getIntArrayExtra(MainActivity.REVEAL_START_LOCATION);
+                    revealBackgroundView.startFromLocation(location);
+                }
                 return true;
             }
         });
@@ -117,7 +123,8 @@ public class UserProfileActivity extends BaseDrawerActivity {
                     rvUserProfile.setVisibility(View.VISIBLE);
                     vUserProfileRoot.setVisibility(View.VISIBLE);
                     //显示数据
-                    rvUserProfile.setAdapter();
+                    adapter = new UserProfileAdapter(UserProfileActivity.this);
+                    rvUserProfile.setAdapter(adapter);
                     //开启其它view的动画
                 } else {
                     tlUserProfile.setVisibility(View.INVISIBLE);
@@ -130,5 +137,10 @@ public class UserProfileActivity extends BaseDrawerActivity {
 
     @OnClick(R.id.btnCreate)
     public void onViewClicked() {
+        int[] loc = new int[2];
+        btnCreate.getLocationOnScreen(loc);
+        loc[0] = loc[0]+btnCreate.getWidth();
+        loc[1] = loc[1]+btnCreate.getHeight();
+        revealBackgroundView.startFromLocation(loc);
     }
 }

@@ -13,7 +13,7 @@ import butterknife.OnClick;
 
 //https://github.com/frogermcs/InstaMaterial这是在Github上的源代码，代码更完整，功能更完善
 public class MainActivity extends BaseDrawerActivity {
-    private static final String REVEAL_START_LOCATION = "reveal_start_location";
+    public static final String REVEAL_START_LOCATION = "reveal_start_location";
 
     @BindView(R.id.btnCreate)
     FloatingActionButton btnCreate;

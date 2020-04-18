@@ -30,6 +30,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.internal.Utils;
 
+import static com.learning.app.md_instagram.util.ImageUrl.picDatas;
+
 public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int PHOTO_ANIMATION_DELAY = 600;
@@ -47,7 +49,7 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public UserProfileAdapter(Context context) {
         this.context = context;
         this.cellSize = ScreenUtil.getScreenWidth(context) / 3;
-        this.photos = Arrays.asList(context.getResources().getStringArray(R.array.user_photos));
+        this.photos = Arrays.asList(picDatas);
     }
 
     @Override
