@@ -94,27 +94,32 @@ public class UserProfileActivity extends BaseDrawerActivity {
             rvUserProfile.setOnScrollChangeListener(new View.OnScrollChangeListener() {
                 @Override
                 public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//                    userProfileAdapter.setLockedAnimations(true);//锁定动画
+                    adapter.setLockedAnimations(true);//锁定动画
                 }
             });
         }
     }
 
     private void setupRevealBackGround(Bundle savedInstanceState) {
-        //注意动画的启动时间
-        revealBackgroundView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                //不删除就会一直监听
-                revealBackgroundView.getViewTreeObserver().removeOnPreDrawListener(this);
-                Intent intent = getIntent();
-                if(intent.hasExtra(MainActivity.REVEAL_START_LOCATION)){
-                    int[] location = getIntent().getIntArrayExtra(MainActivity.REVEAL_START_LOCATION);
-                    revealBackgroundView.startFromLocation(location);
+        if (savedInstanceState == null) {
+            //注意动画的启动时间
+            revealBackgroundView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    //不删除就会一直监听
+                    revealBackgroundView.getViewTreeObserver().removeOnPreDrawListener(this);
+                    Intent intent = getIntent();
+                    if (intent.hasExtra(MainActivity.REVEAL_START_LOCATION)) {
+                        int[] location = getIntent().getIntArrayExtra(MainActivity.REVEAL_START_LOCATION);
+                        revealBackgroundView.startFromLocation(location);
+                    }
+                    return true;
                 }
-                return true;
-            }
-        });
+            });
+        } else {
+            revealBackgroundView.setToFinishedFrame();
+            adapter.setLockedAnimations(true);
+        }
         revealBackgroundView.setOnStateChangeListener(new RevealBackgroundView.OnStateChangeListener() {
             @Override
             public void onStateChange(int state) {
@@ -123,9 +128,14 @@ public class UserProfileActivity extends BaseDrawerActivity {
                     rvUserProfile.setVisibility(View.VISIBLE);
                     vUserProfileRoot.setVisibility(View.VISIBLE);
                     //显示数据
-                    adapter = new UserProfileAdapter(UserProfileActivity.this);
-                    rvUserProfile.setAdapter(adapter);
+                    if (adapter == null) {
+                        adapter = new UserProfileAdapter(UserProfileActivity.this);
+                        rvUserProfile.setAdapter(adapter);
+                    } else {
+                        adapter.notifyDataSetChanged();
+                    }
                     //开启其它view的动画
+                    animateUserProfile();
                 } else {
                     tlUserProfile.setVisibility(View.INVISIBLE);
                     rvUserProfile.setVisibility(View.INVISIBLE);
@@ -135,12 +145,29 @@ public class UserProfileActivity extends BaseDrawerActivity {
         });
     }
 
+    private void animateUserProfile() {
+        //向下平移的高度
+        vUserProfileRoot.setTranslationY(-vUserProfileRoot.getHeight());
+        ivUserProfile.setTranslationY(-ivUserProfile.getHeight());
+        tlUserProfile.setTranslationY(-tlUserProfile.getHeight());
+        vUserDetails.setTranslationY(-vUserDetails.getHeight());
+        vUserStatus.setAlpha(0);
+
+        //从设置的位置平移到最终显示的位置
+        vUserProfileRoot.animate().translationY(0).setDuration(300).setInterpolator(INTERPOLATOR);
+        ivUserProfile.animate().translationY(0).setDuration(300).setStartDelay(100).setInterpolator(INTERPOLATOR);
+        vUserDetails.animate().translationY(0).setDuration(300).setStartDelay(200).setInterpolator(INTERPOLATOR);
+        vUserStatus.animate().alpha(1).setDuration(200).setStartDelay(400).setInterpolator(INTERPOLATOR).start();
+        tlUserProfile.animate().translationY(0).setDuration(300)
+                .setStartDelay(USER_OPTIONS_ANIMATION_DELAY).setInterpolator(INTERPOLATOR);
+    }
+
     @OnClick(R.id.btnCreate)
     public void onViewClicked() {
-        int[] loc = new int[2];
-        btnCreate.getLocationOnScreen(loc);
-        loc[0] = loc[0]+btnCreate.getWidth();
-        loc[1] = loc[1]+btnCreate.getHeight();
-        revealBackgroundView.startFromLocation(loc);
+//        int[] loc = new int[2];
+//        btnCreate.getLocationOnScreen(loc);
+//        loc[0] = loc[0] + btnCreate.getWidth();
+//        loc[1] = loc[1] + btnCreate.getHeight();
+//        revealBackgroundView.startFromLocation(loc);
     }
 }
