@@ -10,6 +10,7 @@ import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -91,9 +92,17 @@ public class UserProfileActivity extends BaseDrawerActivity {
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         rvUserProfile.setLayoutManager(staggeredGridLayoutManager);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            rvUserProfile.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            //这个监听不推荐使用了
+//            rvUserProfile.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//                @Override
+//                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                    adapter.setLockedAnimations(true);//锁定动画
+//                }
+//            });
+            rvUserProfile.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
-                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                    super.onScrollStateChanged(recyclerView, newState);
                     adapter.setLockedAnimations(true);//锁定动画
                 }
             });

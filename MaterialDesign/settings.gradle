@@ -1,2 +1,2 @@
-include ':app', ':md_instagram'
+include ':app', ':md_instagram', ':md_appbarlayout'
 rootProject.name='MD_FloatingActionButton'
