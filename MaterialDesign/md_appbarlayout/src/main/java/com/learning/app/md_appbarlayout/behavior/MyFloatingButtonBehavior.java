@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -20,7 +19,7 @@ import com.learning.app.md_appbarlayout.R;
 public class MyFloatingButtonBehavior extends CoordinatorLayout.Behavior<FloatingActionButton> {
     private boolean isAnimatingOut = false;
     private Toolbar toolbar;
-    private CoordinatorLayout.LayoutParams layoutParams;
+    private ViewGroup.MarginLayoutParams layoutParams;
 
     public MyFloatingButtonBehavior(Context context, AttributeSet attr) {
         super(context, attr);
@@ -30,7 +29,7 @@ public class MyFloatingButtonBehavior extends CoordinatorLayout.Behavior<Floatin
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull FloatingActionButton child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
         //当被观察的View（RecyclerView）滑动之前的回调
         //滑动关联轴，super表示其它的由父类处理
-        layoutParams = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
+        layoutParams = (ViewGroup.MarginLayoutParams) child.getLayoutParams();
         toolbar = coordinatorLayout.findViewById(R.id.toolBar);
         return axes == ViewCompat.SCROLL_AXIS_VERTICAL || super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target, axes, type);
     }
@@ -50,13 +49,13 @@ public class MyFloatingButtonBehavior extends CoordinatorLayout.Behavior<Floatin
     }
 
     private void animateOut(FloatingActionButton view,Toolbar toolbar) {
-//        ViewCompat.animate(view).translationY(view.getHeight()+layoutParams.bottomMargin).start();
+        ViewCompat.animate(view).translationY(view.getHeight()+layoutParams.bottomMargin).start();
         ViewCompat.animate(view).scaleX(0f).scaleY(0f).start();
         ViewCompat.animate(toolbar).translationY(-toolbar.getHeight()).start();
     }
 
     private void animateIn(FloatingActionButton view,Toolbar toolbar) {
-//        ViewCompat.animate(view).translationY(0).start();
+        ViewCompat.animate(view).translationY(0).start();
         ViewCompat.animate(view).scaleX(1f).scaleY(1f).start();
         ViewCompat.animate(toolbar).translationY(0).start();
     }
