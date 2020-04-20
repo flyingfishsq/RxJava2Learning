@@ -52,11 +52,13 @@ public class MyFloatingButtonBehavior extends CoordinatorLayout.Behavior<Floatin
         ViewCompat.animate(view).translationY(view.getHeight()+layoutParams.bottomMargin).start();
         ViewCompat.animate(view).scaleX(0f).scaleY(0f).start();
         ViewCompat.animate(toolbar).translationY(-toolbar.getHeight()).start();
+        ViewCompat.animate(toolbar).scaleX(0f).scaleY(0f).start();
     }
 
     private void animateIn(FloatingActionButton view,Toolbar toolbar) {
         ViewCompat.animate(view).translationY(0).start();
         ViewCompat.animate(view).scaleX(1f).scaleY(1f).start();
         ViewCompat.animate(toolbar).translationY(0).start();
+        ViewCompat.animate(toolbar).scaleX(1f).scaleY(1f).start();
     }
 }
