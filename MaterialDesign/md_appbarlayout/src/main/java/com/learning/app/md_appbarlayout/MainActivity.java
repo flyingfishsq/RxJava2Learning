@@ -1,5 +1,6 @@
 package com.learning.app.md_appbarlayout;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onShow() {
                 //减速显示
+                toolBar.animate().translationY(0)
+                        .setInterpolator(new DecelerateInterpolator(3));
                 fab.animate().translationY(0)
                         .setInterpolator(new DecelerateInterpolator(3));
             }
@@ -76,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onHide() {
                 //加速隐藏
+                toolBar.animate().translationY(-toolBar.getHeight())
+                        .setInterpolator(new AccelerateInterpolator(3));
                 fab.animate().translationY(fab.getHeight()+layoutParams.bottomMargin)
                         .setInterpolator(new AccelerateInterpolator(3));
             }
@@ -85,5 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab)
     public void onViewClicked() {
+        //用Behavior实现
+        startActivity(new Intent(MainActivity.this, SecondActivity.class));
     }
 }
