@@ -10,23 +10,25 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
         android:clipChildren="false"
-        android:paddingTop="?attr/actionBarSize"/>
+        android:clipToPadding="false"
+        android:paddingTop="?attr/actionBarSize" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"/>
+        android:background="?attr/colorPrimary" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:background="@drawable/fab_bg"
-        android:layout_margin="16dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="end|bottom|right"
-        android:src="@android:drawable/ic_dialog_email"/>
+        android:layout_margin="16dp"
+        android:background="@drawable/fab_bg"
+        android:src="@android:drawable/ic_dialog_email"
+        app:fabCustomSize="60dp"
+        app:layout_behavior=".behavior.MyFloatingButtonBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
