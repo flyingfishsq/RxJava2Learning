@@ -37,10 +37,10 @@ public class MyFloatingButtonBehavior extends CoordinatorLayout.Behavior<Floatin
     @Override
     public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull FloatingActionButton child, @NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type, @NonNull int[] consumed) {
         //当被观察的View（RecyclerView）开始滑动的回调
-        if (dyConsumed > 20 && !isAnimatingOut) {
+        if (dyConsumed > 4 && !isAnimatingOut) {
             animateOut(child,toolbar);
             isAnimatingOut = true;
-        } else if (dyConsumed < -20 && isAnimatingOut) {
+        } else if (dyConsumed < -4 && isAnimatingOut) {
             animateIn(child,toolbar);
             isAnimatingOut = false;
         }
