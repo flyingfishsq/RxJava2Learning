@@ -1,5 +1,6 @@
 package com.learning.app.md_appbarlayout;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -16,7 +17,18 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
+/**
+ * layout_scrollFlags
+ * scroll：里面所有的子控件想要当滑出屏幕的时候View都必须设置这个flag，没有设置的将被固定在屏幕顶部
+ * 上会一起上，下会在可滑动子控件归位时再下（上一起上，下最后下）
+ * enterAlways（'quick return' pattern）：RecyclerView下拉不到最底部，就不返回原位置
+ * <p>
+ * enterAlwaysCollapsed
+ * <p>
+ * snap
+ */
 public class ThirdActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
@@ -51,5 +63,10 @@ public class ThirdActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MyAdapter(mData));
+    }
+
+    @OnClick(R.id.fab)
+    public void onViewClicked() {
+        startActivity(new Intent(ThirdActivity.this,ForthActivity.class));
     }
 }
