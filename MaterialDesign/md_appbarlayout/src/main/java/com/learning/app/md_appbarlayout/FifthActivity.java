@@ -1,19 +1,24 @@
 package com.learning.app.md_appbarlayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.learning.app.md_appbarlayout.fragment.NewsDetailFragment;
 
 public class FifthActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
+    private Toolbar toolBar;
     private String[] title = {
             "头条",
             "新闻",
@@ -32,14 +37,15 @@ public class FifthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fifth);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.vp);
-        tabLayout = (TabLayout)findViewById(R.id.tablayout);
+        final ViewPager viewPager = findViewById(R.id.vp);
+        toolBar = findViewById(R.id.toolBar);
+        tabLayout = findViewById(R.id.tablayout);
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
         //1.TabLayout和Viewpager关联
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition(),true);
+                viewPager.setCurrentItem(tab.getPosition(), true);
             }
 
             @Override
@@ -59,6 +65,14 @@ public class FifthActivity extends AppCompatActivity {
         tabLayout.setTabsFromPagerAdapter(adapter);
 
         viewPager.setAdapter(adapter);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FifthActivity.this, SixthActivity.class));
+            }
+        });
     }
 
     class MyPagerAdapter extends FragmentPagerAdapter {
