@@ -1,18 +1,18 @@
 package com.learning.app.md_appbarlayout;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.learning.app.md_appbarlayout.adapter.MyAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * NestedScrollView的使用
@@ -39,5 +39,10 @@ public class ForthActivity extends AppCompatActivity {
         setSupportActionBar(toolBar);
         setTitle("AppbarLayout与NestedScrollView");
         toolBar.setTitleTextColor(Color.YELLOW);
+    }
+
+    @OnClick(R.id.fab)
+    public void onViewClicked() {
+        startActivity(new Intent(ForthActivity.this,FifthActivity.class));
     }
 }
