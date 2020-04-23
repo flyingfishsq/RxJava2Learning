@@ -23,10 +23,12 @@ import butterknife.OnClick;
  * layout_scrollFlags
  * scroll：里面所有的子控件想要当滑出屏幕的时候View都必须设置这个flag，没有设置的将被固定在屏幕顶部
  * 上会一起上，下会在可滑动子控件归位时再下（上一起上，下最后下）
+ * （以下是标题栏随折叠一起顶出界面）
  * enterAlways（'quick return' pattern）：RecyclerView下拉不到最底部，就不返回原位置
  * <p>
- * enterAlwaysCollapsed
+ * enterAlwaysCollapsed一般结合最小高度minHeight使用，当滚动到最小高度时才折叠
  * <p>
+ * exitUntilCollapsed（常用属性，标题栏总是悬浮在顶部）折叠后就不推入到界面以外了
  * snap
  */
 public class ThirdActivity extends AppCompatActivity {
