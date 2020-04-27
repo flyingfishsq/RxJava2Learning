@@ -21,4 +21,13 @@
         android:text="B文本, 监听者View"
         app:layout_behavior=".behavior.TextViewBehavior" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end|bottom|right"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_dialog_email"
+        app:fabCustomSize="60dp" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
