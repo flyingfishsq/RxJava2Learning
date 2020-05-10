@@ -40,6 +40,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnTouchLis
     public boolean onTouch(View v, MotionEvent event) {
         Log.e(TAG, "OnTouchListener---" + event.getAction() + "---view:" + v);
         return false;
+        //返回true就接收不到OnTouchEvent和OnClickListener事件
 //        return true;
     }
 

@@ -23,6 +23,8 @@ public class MyButton extends AppCompatButton {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.e(TAG, "onTouchEvent---" + event.getAction());
-        return super.onTouchEvent(event);
+//        return
+        super.onTouchEvent(event);
+        return true;
     }
 }
