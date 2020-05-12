@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 事件传递机制
+ * View的事件传递机制
  */
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
 

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.learning.app.eventdelivery.view.MyCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light"
+    android:background="@android:color/holo_green_light"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View的事件分发机制：\nOnClickListener接口和OnTouchListener接口"/>
+        android:text="ViewGroup的事件分发机制：\n\n点击按钮，先接触事件的是父容器，dispatchTouchEvent和onInterceptTouchEvent
+Button设置了OnTouchListener和OnClickListener，父容器不响应OnTouchListener和onTouchEvent" />
 
-    <Button
+    <com.learning.app.eventdelivery.view.MyButton2
         android:id="@+id/btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,4 +30,4 @@
         android:src="@android:drawable/ic_dialog_email"
         app:fabCustomSize="60dp" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</com.learning.app.eventdelivery.view.MyCoordinatorLayout>

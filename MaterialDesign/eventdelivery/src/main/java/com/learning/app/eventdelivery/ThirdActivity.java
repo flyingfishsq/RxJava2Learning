@@ -1,39 +1,38 @@
 package com.learning.app.eventdelivery;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.learning.app.eventdelivery.view.MyButton;
+import com.learning.app.eventdelivery.view.MyCoordinatorLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.learning.app.eventdelivery.MainActivity.TAG;
 
 /**
- * View的事件传递机制
+ * ViewGroup的事件传递机制
+ * <p>
+ * dispatchTouchEvent()
+ * onTouchEvent()
+ * onInterceptTouchEvent()，触摸事件拦截
  */
-public class SecondActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
+public class ThirdActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
 
     @BindView(R.id.btn1)
-    MyButton btn1;
+    Button btn1;
     @BindView(R.id.root)
-    CoordinatorLayout root;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
+    MyCoordinatorLayout root;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_third);
         ButterKnife.bind(this);
 
         root.setOnTouchListener(this);
@@ -47,17 +46,10 @@ public class SecondActivity extends AppCompatActivity implements View.OnTouchLis
     public boolean onTouch(View v, MotionEvent event) {
         Log.e(TAG, "OnTouchListener---" + event.getAction() + "---view:" + v);
         return false;
-        //返回true就接收不到OnTouchEvent和OnClickListener事件
-//        return true;
     }
 
     @Override
     public void onClick(View v) {
         Log.e(TAG, "OnClickListener---view:" + v);
-    }
-
-    @OnClick(R.id.fab)
-    public void onViewClicked() {
-        startActivity(new Intent(SecondActivity.this,ThirdActivity.class));
     }
 }
