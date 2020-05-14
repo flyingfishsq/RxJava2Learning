@@ -18,6 +18,19 @@ import butterknife.OnClick;
 
 /**
  * View的事件传递机制
+ *
+ * 重点代码
+ * dispatchTouchEvent
+ *             ListenerInfo li = mListenerInfo;
+ *             if (li != null && li.mOnTouchListener != null
+ *                     && (mViewFlags & ENABLED_MASK) == ENABLED
+ *                     && li.mOnTouchListener.onTouch(this, event)) {
+ *                 result = true;
+ *             }
+ *
+ *             if (!result && onTouchEvent(event)) {
+ *                 result = true;
+ *             }
  */
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
 
@@ -59,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
      * <p>
      * 结论：
      * 如果OnTouchListener的OnTouch方法返回了true，那么View里面的OnTouchEvent就不会被调用
+     *
      */
     @Override
     public boolean onTouch(View v, MotionEvent event) {

@@ -21,6 +21,27 @@ import static com.learning.app.eventdelivery.MainActivity.TAG;
  * dispatchTouchEvent()
  * onTouchEvent()
  * onInterceptTouchEvent()，触摸事件拦截
+ * <p>
+ * <p>
+ * ViewGroup的重点代码
+ * final boolean disallowIntercept = (mGroupFlags & FLAG_DISALLOW_INTERCEPT) != 0;
+ * if (!disallowIntercept) {
+ * intercepted = onInterceptTouchEvent(ev);
+ * ev.setAction(action); // restore action in case it was changed
+ * } else {
+ * intercepted = false;
+ * }
+ * <p>
+ * <p>
+ * <p>
+ * if (child == null) {
+ * handled = super.dispatchTouchEvent(event);
+ * } else {
+ * handled = child.dispatchTouchEvent(event);
+ * }
+ *
+ * 作业：1.在ScrollView里面嵌套一个ListView，解决滑动冲突
+ * 2.ListView全部展开
  */
 public class ThirdActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
 
