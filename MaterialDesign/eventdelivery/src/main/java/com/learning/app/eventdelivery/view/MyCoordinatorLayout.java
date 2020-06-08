@@ -23,8 +23,9 @@ import static com.learning.app.eventdelivery.MainActivity.TAG;
  *
  * setDisallowIntercept
  *
- * onInterceptTouchEvent所有的ViewGroup都是默认不拦截的
+ * onInterceptTouchEvent<>n</>
  *
+ * 所有的ViewGroup都是默认不拦截的
  * 所谓的拦截，是指按下去自身及以后的后续事件move，up等等，拦截下来给自己的onTouch用
  */
 public class MyCoordinatorLayout extends CoordinatorLayout {
