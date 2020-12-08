@@ -7,3 +7,11 @@
 /MaterialDesign/eventdelivery/.idea
 /MaterialDesign/eventdelivery/local.properties
 /AppKeepAlive/.idea
+/.idea
+/.gradle
+/gradle
+/build.gradle
+/gradlew
+/gradlew.bat
+/local.properties
+/SecondRepository.iml
