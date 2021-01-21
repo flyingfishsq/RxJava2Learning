@@ -106,7 +106,7 @@ public class SecondActivity extends Activity {
         userPluses.add(up3);
     }
 
-    private UserPlus createSingleUser(){
+    private UserPlus createSingleUser() {
         UserPlus up2 = new UserPlus();
         up2.useName = "李四";
         up2.addresses.add(new Address("外环路", "肥东"));
@@ -331,7 +331,7 @@ public class SecondActivity extends Activity {
     }
 
     private Observable<Address> convertObservableByFlatMapPlus() {
-        Observable<Address> observable = Observable.fromIterable((Iterable<UserPlus>)userPluses).flatMap(new Function<UserPlus, ObservableSource<Address>>() {
+        Observable<Address> observable = Observable.fromIterable((Iterable<UserPlus>) userPluses).flatMap(new Function<UserPlus, ObservableSource<Address>>() {
             @Override
             public ObservableSource<Address> apply(UserPlus userPlus) throws Exception {
                 return Observable.fromIterable(userPlus.addresses);
