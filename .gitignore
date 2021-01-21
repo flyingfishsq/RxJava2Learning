@@ -7,12 +7,9 @@
 /MaterialDesign/eventdelivery/.idea
 /MaterialDesign/eventdelivery/local.properties
 /AppKeepAlive/.idea
-<<<<<<< HEAD
 /WriteRxJava/.idea
 /.idea
 /NetImageLoad/.idea
-=======
-/.idea
 /.gradle
 /gradle
 /build.gradle
@@ -20,4 +17,3 @@
 /gradlew.bat
 /local.properties
 /SecondRepository.iml
->>>>>>> d8896fd34fbe084dd4d5a38cd760ad22d4900609
