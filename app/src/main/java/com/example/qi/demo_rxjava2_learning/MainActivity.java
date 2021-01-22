@@ -119,6 +119,35 @@ public class MainActivity extends Activity {
                     });
                     break;
                 case R.id.btn_createByJust:
+//                    //通过这个例子可以发现，doOnNext表示被观察者每调用一次onNext执行一次，但没有影响观察者中的值
+//                    getObservable().doOnNext(new Consumer<Integer>() {
+//                        @Override
+//                        public void accept(Integer integer) throws Exception {
+//                            Log.e("doOnNext", "doOnNext + 1 = " + (integer + 1));
+//                        }
+//                    }).subscribe(new Observer<Integer>() {
+//                        @Override
+//                        public void onSubscribe(Disposable d) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onNext(Integer integer) {
+//                            Log.e("Observer doOnNext", "Observer doOnNext = " + integer);
+//                        }
+//
+//                        @Override
+//                        public void onError(Throwable e) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onComplete() {
+//
+//                        }
+//                    });
+
+
                     getObservableByJust().subscribe(new Observer<String>() {
                         @Override
                         public void onComplete() {
