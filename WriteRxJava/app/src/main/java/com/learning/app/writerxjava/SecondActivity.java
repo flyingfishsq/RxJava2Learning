@@ -48,7 +48,8 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public Bitmap apply(String s) {
                 tvResult.setText("兄弟老婆： 我不给你做饭");
-                return BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bear);
+                return bitmap;
             }
         }).subscribe(new Subscribe<Bitmap>() {
             @Override
