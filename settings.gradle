@@ -1,1 +1,2 @@
+include ':chapter1_live_search'
 include ':app'
