@@ -1,2 +1,3 @@
+include ':chapter1_coffee_break'
 include ':chapter1_live_search'
 include ':app'
