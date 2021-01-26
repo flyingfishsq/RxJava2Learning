@@ -1,3 +1,4 @@
+include ':chapter4_flickr_client'
 include ':chapter3_coffee_break'
 include ':chapter3_credit_card_validator'
 include ':chapter2_news_reader'
