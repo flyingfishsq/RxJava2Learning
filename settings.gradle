@@ -1,3 +1,5 @@
+include ':chapter3_coffee_break'
+include ':chapter3_credit_card_validator'
 include ':chapter2_news_reader'
 include ':chapter1_coffee_break'
 include ':chapter1_live_search'
