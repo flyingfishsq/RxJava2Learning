@@ -45,7 +45,7 @@ public class MainActivity extends FragmentActivity {
 
         final FlickrApi api = restAdapter.create(FlickrApi.class);
         final String apiKey = "";
-                //BuildConfig.FLICKR_API_KEY;
+        //BuildConfig.FLICKR_API_KEY;
 
         final Button searchButton = (Button) findViewById(R.id.search_button);
         final Observable<Object> buttonClickObservable = RxView.clicks(searchButton);
@@ -92,7 +92,7 @@ public class MainActivity extends FragmentActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         photos -> {
-                            final RecyclerView rv = (RecyclerView)findViewById(R.id.main_list);
+                            final RecyclerView rv = (RecyclerView) findViewById(R.id.main_list);
                             rv.setLayoutManager(new LinearLayoutManager(this));
 
                             Log.d(TAG, "Found " + photos.size() + " photos");

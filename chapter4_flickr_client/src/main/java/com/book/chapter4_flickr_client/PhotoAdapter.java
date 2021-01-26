@@ -10,12 +10,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.cardview.widget.CardView;
+
 import com.book.chapter4_flickr_client.pojo.Photo;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>{
+public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder> {
 
     final private Context context;
     final private List<Photo> photos;
