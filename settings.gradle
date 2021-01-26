@@ -1,3 +1,4 @@
+include ':chapter7_file_browser_3'
 include ':chapter6_file_browser_2'
 include ':chapter5_file_browser'
 include ':chapter4_flickr_client'
