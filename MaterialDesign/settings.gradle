@@ -1,2 +1,0 @@
-include ':app', ':md_instagram', ':md_appbarlayout', ':selfdefinebehavior', ':eventdelivery'
-rootProject.name='MD_FloatingActionButton'
