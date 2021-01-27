@@ -1,3 +1,5 @@
+include ':chapter8_coffee_break'
+include ':chapter8_tic_tac_toe'
 include ':chapter7_file_browser_3'
 include ':chapter6_file_browser_2'
 include ':chapter5_file_browser'
