@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.book.chapter9_tic_tac_toe">
+    package="com.book.chapter10_tic_tac_toe">
 
     <application
         android:name=".GameApplication"

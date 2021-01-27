@@ -1,3 +1,5 @@
+include ':chapter10_tic_tac_toe'
+include ':chapter9_coffee_break'
 include ':chapter9_tic_tac_toe'
 include ':chapter8_with_latest_from'
 include ':chapter8_coffee_break'
