@@ -1,3 +1,4 @@
+include ':chapter13_fan_animation'
 include ':chapter12_chat_client'
 include ':chapter11_chat_client'
 include ':chapter10_tic_tac_toe'
